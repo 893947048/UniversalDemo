@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
                 Data json = gson.fromJson(data, Data.class);
                 Data.ResultBean dataResult = json.getResult();
                 act_s = dataResult.getAct_s();
+                //...
                 adapter = new MyBaseAdapter(MainActivity.this, act_s);
                 xlv.setAdapter(adapter);
             }
