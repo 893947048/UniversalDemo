@@ -33,6 +33,8 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends Activity implements XListView.IXListViewListener {
+
+    //测试上传
     public String path = "http://op.juhe.cn/onebox/movie/video?dtype=1&q=%E8%91%AB%E8%8A%A6%E5%A8%83&key=321b198313eefa7cca326d0fdb7dbe10";
     MyBaseAdapter adapter;
     XListView xlv;
