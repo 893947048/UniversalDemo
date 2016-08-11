@@ -2,23 +2,20 @@ package com.bw.universaldemo;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.bw.universaldemo.Model.Bean.Data;
 import com.bw.universaldemo.adapter.MyBaseAdapter;
 import com.google.gson.Gson;
-import com.google.gson.internal.ObjectConstructor;
 import com.mc.universal_library.BaseLoginActivity;
-import com.mc.universal_library.encryption.DesUtil;
 import com.mc.universal_library.encryption.MD5Util;
 import com.mc.universal_library.http.GetHttpUtils;
-import com.mc.universal_library.http.PostHttpUtils;
 import com.mc.universal_library.system.AppUtils;
 import com.mc.universal_library.system.GPSUtils;
 import com.mc.universal_library.system.SDCardUtils;
@@ -29,7 +26,6 @@ import com.mc.universal_library.toolsutils.ToastUtils;
 import com.mc.universal_library.toolsutils.TransitionTime;
 import com.mc.universal_library.xlistview.XListView;
 
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends Activity implements XListView.IXListViewListener {
@@ -39,6 +35,7 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
     MyBaseAdapter adapter;
     XListView xlv;
     String data;
+    ImageView imageView;
     List<Data.ResultBean.ActSBean> act_s;
     Handler handler = new Handler() {
         @Override
@@ -53,6 +50,7 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
                 adapter = new MyBaseAdapter(MainActivity.this, act_s);
                 xlv.setAdapter(adapter);
             }
+
         }
     };
 
@@ -61,11 +59,12 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         xlv = (XListView) findViewById(R.id.xlv);
+
         xlv.setPullLoadEnable(true);
         xlv.setPullRefreshEnable(true);
         xlv.setXListViewListener(this);
-
-
+        imageView = (ImageView) findViewById(R.id.imageView);
+        Glide.with(MainActivity.this).load(R.mipmap.ic_launcher).asGif().into(imageView);
         /**
          * 判断网络连接
          * */
@@ -186,6 +185,10 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
         Log.i("xxx", "当前手机屏幕亮度为:" + screenBrightness);
 
 
+    }
+
+    public void jump(View v) {
+
         /**
          * 登陆页面啊
          * */
@@ -196,8 +199,8 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
     /**
      * 设置媒体音量
      *
-     * @param this       上下文
-     * @param ringVloume 音量
+     * @paramthis 上下文
+     * @paramringVloume 音量
      */
     public void soudup(View v) {
         //无显示
@@ -211,8 +214,8 @@ public class MainActivity extends Activity implements XListView.IXListViewListen
     /**
      * 设置媒体音量
      *
-     * @param this       上下文
-     * @param ringVloume 音量
+     * @paramthis 上下文
+     * @paramringVloume 音量
      */
 
     public void souddown(View v) {
